@@ -12,7 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *timerDisplay;
 @property (weak, nonatomic) IBOutlet UIButton *startStop;
-@property (weak, nonatomic) IBOutlet UIButton *reset;
+@property (weak, nonatomic) IBOutlet UIButton *lapReset;
+@property (weak, nonatomic) IBOutlet UITableView *laps;
 
 @end
 
@@ -20,15 +21,19 @@
 
 int _time;
 NSTimer *_timer;
+NSMutableArray *_lapArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+
+    _lapArray = [[NSMutableArray alloc] init];
 }
 
 - (IBAction)startStopClicked:(id)sender {
     if (_timer == nil) {
-        self.reset.enabled = NO;
+        self.lapReset.enabled = YES;
+        [self.lapReset setTitle:@"Lap" forState:UIControlStateNormal];
 
         [self.startStop setTitle:@"Stop" forState:UIControlStateNormal];
 
@@ -37,7 +42,8 @@ NSTimer *_timer;
             [self updateDisplay];
         }];
     } else {
-        self.reset.enabled = YES;
+        self.lapReset.enabled = YES;
+        [self.lapReset setTitle:@"Reset" forState:UIControlStateNormal];
 
         [self.startStop setTitle:@"Start" forState:UIControlStateNormal];
 
@@ -46,18 +52,47 @@ NSTimer *_timer;
     }
 }
 
-- (IBAction)resetClicked:(id)sender {
-    _time = 0;
-    self.reset.enabled = NO;
-    [self updateDisplay];
+- (IBAction)lapResetClicked:(id)sender {
+    if (_timer == nil) {
+        _time = 0;
+
+        self.lapReset.enabled = NO;
+        [self.lapReset setTitle:@"Lap" forState:UIControlStateNormal];
+
+        [_lapArray removeAllObjects];
+        [self.laps reloadData];
+
+        [self updateDisplay];
+    } else {
+        [_lapArray addObject:[NSNumber numberWithInt:_time]];
+        [self.laps reloadData];
+    }
 }
 
 - (void)updateDisplay {
-    int hundredth = _time % 100;
-    int seconds = (_time / 100) % 60;
-    int minutes = (_time / 6000) % 60;
-    int hours = _time / 360000;
-    self.timerDisplay.text = [NSString stringWithFormat: @"%02d:%02d:%02d.%02d", hours, minutes, seconds, hundredth];
+    self.timerDisplay.text = [self formatTime:_time];
+}
+
+- (NSString*)formatTime:(int)time {
+    int hundredth = time % 100;
+    int seconds = (time / 100) % 60;
+    int minutes = (time / 6000) % 60;
+    int hours = time / 360000;
+    return [NSString stringWithFormat: @"%02d:%02d:%02d.%02d", hours, minutes, seconds, hundredth];
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+
+    cell.textLabel.text = [NSString stringWithFormat:@"Lap %lu", indexPath.row + 1];
+    NSNumber *time = _lapArray[indexPath.row];
+    cell.detailTextLabel.text = [self formatTime:time.intValue];
+
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _lapArray.count;
 }
 
 @end
