@@ -18,28 +18,98 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tyi-1K-paU">
-                                <rect key="frame" x="0.0" y="328.5" width="375" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tyi-1K-paU">
+                                <rect key="frame" x="0.0" y="311.5" width="375" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDX-We-Rqq">
-                                        <rect key="frame" x="0.0" y="0.0" width="183.5" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDX-We-Rqq" customClass="RoundButton">
+                                        <rect key="frame" x="16" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="08V-N8-chG"/>
+                                            <constraint firstAttribute="height" constant="64" id="0lW-BS-z7d"/>
+                                        </constraints>
                                         <state key="normal" title="Lap"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColorForNormal">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColorForHighlighted">
+                                                <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColorForDisabled">
+                                                <color key="value" red="0.11580078125000004" green="0.11580078125000004" blue="0.11580078125000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="lapResetClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uhg-lc-rui"/>
+                                            <action selector="lapButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uhg-lc-rui"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppr-kZ-ThO">
-                                        <rect key="frame" x="191.5" y="0.0" width="183.5" height="30"/>
-                                        <state key="normal" title="Start"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZ9-ef-TlT" customClass="RoundButton">
+                                        <rect key="frame" x="84" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="mEa-2x-TUn"/>
+                                            <constraint firstAttribute="height" constant="64" id="tni-6B-3em"/>
+                                        </constraints>
+                                        <state key="normal" title="Reset"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColorForNormal">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColorForHighlighted">
+                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="startStopClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cm2-jg-8UF"/>
+                                            <action selector="resetButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3me-b9-pb7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppr-kZ-ThO" customClass="RoundButton">
+                                        <rect key="frame" x="295" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="8qz-d4-W8q"/>
+                                            <constraint firstAttribute="width" constant="64" id="Wjh-gN-lyN"/>
+                                        </constraints>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" red="0.31764705882352939" green="0.80784313725490198" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColorForNormal">
+                                                <color key="value" red="0.12375030670000001" green="0.34415215249999997" blue="0.14341539140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColorForHighlighted">
+                                                <color key="value" red="0.094053722919999999" green="0.20540395380000001" blue="0.1226848587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="startButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cm2-jg-8UF"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlC-XH-NBd" customClass="RoundButton">
+                                        <rect key="frame" x="359" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="U5P-9c-7kA"/>
+                                            <constraint firstAttribute="width" constant="64" id="h55-QG-6zy"/>
+                                        </constraints>
+                                        <state key="normal" title="Stop">
+                                            <color key="titleColor" red="0.87810546879999996" green="0.19499044500000001" blue="0.099676269149999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColorForNormal">
+                                                <color key="value" red="0.34415215249999997" green="0.14752924085358032" blue="0.12348460207600404" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColorForHighlighted">
+                                                <color key="value" red="0.20540395380000001" green="0.11683356872476504" blue="0.14054543876209188" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="stopButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xaY-Dz-fcz"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="moJ-Wz-z0B">
-                                <rect key="frame" x="0.0" y="366.5" width="375" height="300.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="383.5" width="375" height="283.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="7L8-B2-d7K" detailTextLabel="3SW-vk-xEW" style="IBUITableViewCellStyleValue1" id="J3s-6K-eBV">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -52,18 +122,19 @@
                                                     <rect key="frame" x="15" y="14" width="28.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3SW-vk-xEW">
                                                     <rect key="frame" x="322.5" y="14" width="37.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -71,20 +142,20 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUl-dR-SCL">
-                                <rect key="frame" x="0.0" y="20" width="375" height="300.5"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="283.5"/>
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="40"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FUl-dR-SCL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0e7-AK-3c3"/>
                             <constraint firstItem="tyi-1K-paU" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="9rZ-4P-D7r"/>
                             <constraint firstItem="moJ-Wz-z0B" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Apl-CL-kW6"/>
                             <constraint firstItem="FUl-dR-SCL" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Gsb-ZZ-Wo2"/>
-                            <constraint firstItem="FUl-dR-SCL" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.5" constant="-23" id="I53-g4-8ka"/>
-                            <constraint firstItem="moJ-Wz-z0B" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.5" constant="-23" id="OPY-LY-49H"/>
+                            <constraint firstItem="FUl-dR-SCL" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.5" constant="-40" id="I53-g4-8ka"/>
+                            <constraint firstItem="moJ-Wz-z0B" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.5" constant="-40" id="OPY-LY-49H"/>
                             <constraint firstItem="moJ-Wz-z0B" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="YO9-nl-ksn"/>
                             <constraint firstItem="moJ-Wz-z0B" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ZEC-94-sbD"/>
                             <constraint firstItem="tyi-1K-paU" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dzX-2e-DUy"/>
@@ -94,9 +165,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="lapReset" destination="WDX-We-Rqq" id="iaj-fg-pg7"/>
+                        <outlet property="lapButton" destination="WDX-We-Rqq" id="iaj-fg-pg7"/>
                         <outlet property="laps" destination="moJ-Wz-z0B" id="SIx-Iz-wIy"/>
-                        <outlet property="startStop" destination="Ppr-kZ-ThO" id="4HR-Ps-82w"/>
+                        <outlet property="resetButton" destination="yZ9-ef-TlT" id="vI6-EV-NsY"/>
+                        <outlet property="startButton" destination="Ppr-kZ-ThO" id="4HR-Ps-82w"/>
+                        <outlet property="stopButton" destination="wlC-XH-NBd" id="HPo-R9-WLI"/>
                         <outlet property="timerDisplay" destination="FUl-dR-SCL" id="pc5-C1-gtE"/>
                     </connections>
                 </viewController>

@@ -13,6 +13,7 @@
 		27C242542218E82600F06BE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27C242532218E82600F06BE8 /* Assets.xcassets */; };
 		27C242572218E82600F06BE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C242552218E82600F06BE8 /* LaunchScreen.storyboard */; };
 		27C2425A2218E82600F06BE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C242592218E82600F06BE8 /* main.m */; };
+		27E2E8BC222799A600BFC0B9 /* RoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E2E8BB222799A600BFC0B9 /* RoundButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		27C242562218E82600F06BE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27C242582218E82600F06BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27C242592218E82600F06BE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		27E2E8BA222799A600BFC0B9 /* RoundButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundButton.h; sourceTree = "<group>"; };
+		27E2E8BB222799A600BFC0B9 /* RoundButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoundButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 				27C242552218E82600F06BE8 /* LaunchScreen.storyboard */,
 				27C242582218E82600F06BE8 /* Info.plist */,
 				27C242592218E82600F06BE8 /* main.m */,
+				27E2E8BA222799A600BFC0B9 /* RoundButton.h */,
+				27E2E8BB222799A600BFC0B9 /* RoundButton.m */,
 			);
 			path = Stopwatch;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E2E8BC222799A600BFC0B9 /* RoundButton.m in Sources */,
 				27C2424F2218E82400F06BE8 /* ViewController.m in Sources */,
 				27C2425A2218E82600F06BE8 /* main.m in Sources */,
 				27C2424C2218E82400F06BE8 /* AppDelegate.m in Sources */,

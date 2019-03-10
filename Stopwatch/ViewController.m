@@ -7,13 +7,17 @@
 //
 
 #import "ViewController.h"
+#import "RoundButton.h"
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *timerDisplay;
-@property (weak, nonatomic) IBOutlet UIButton *startStop;
-@property (weak, nonatomic) IBOutlet UIButton *lapReset;
+@property (weak, nonatomic) IBOutlet RoundButton *startButton;
+@property (weak, nonatomic) IBOutlet RoundButton *stopButton;
+@property (weak, nonatomic) IBOutlet RoundButton *lapButton;
+@property (weak, nonatomic) IBOutlet RoundButton *resetButton;
 @property (weak, nonatomic) IBOutlet UITableView *laps;
+
 
 @end
 
@@ -28,45 +32,49 @@ NSMutableArray *_lapArray;
     // Do any additional setup after loading the view, typically from a nib.
 
     _lapArray = [[NSMutableArray alloc] init];
+
+//    [self.startStop setFillColor:[[UIColor alloc] initWithRed:0.0980 green:0.2078 blue:0.1255 alpha:1.0] forState:UIControlStateNormal];
+//    [self.startStop setFillColor:[[UIColor alloc] initWithRed:0.0745 green:0.1294 blue:0.0784 alpha:1.0] forState:UIControlStateHighlighted];
 }
 
-- (IBAction)startStopClicked:(id)sender {
-    if (_timer == nil) {
-        self.lapReset.enabled = YES;
-        [self.lapReset setTitle:@"Lap" forState:UIControlStateNormal];
+- (IBAction)startButtonClicked:(id)sender {
+    self.resetButton.hidden = YES;
+    self.lapButton.hidden = NO;
+    self.lapButton.enabled = YES;
+    self.startButton.hidden = YES;
+    self.stopButton.hidden = NO;
 
-        [self.startStop setTitle:@"Stop" forState:UIControlStateNormal];
-
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.01 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            _time++;
-            [self updateDisplay];
-        }];
-    } else {
-        self.lapReset.enabled = YES;
-        [self.lapReset setTitle:@"Reset" forState:UIControlStateNormal];
-
-        [self.startStop setTitle:@"Start" forState:UIControlStateNormal];
-
-        [_timer invalidate];
-        _timer = nil;
-    }
-}
-
-- (IBAction)lapResetClicked:(id)sender {
-    if (_timer == nil) {
-        _time = 0;
-
-        self.lapReset.enabled = NO;
-        [self.lapReset setTitle:@"Lap" forState:UIControlStateNormal];
-
-        [_lapArray removeAllObjects];
-        [self.laps reloadData];
-
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.01 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        _time++;
         [self updateDisplay];
-    } else {
-        [_lapArray addObject:[NSNumber numberWithInt:_time]];
-        [self.laps reloadData];
-    }
+    }];
+}
+- (IBAction)stopButtonClicked:(id)sender {
+    self.lapButton.hidden = YES;
+    self.resetButton.hidden = NO;
+    self.stopButton.hidden = YES;
+    self.startButton.hidden = NO;
+
+    [_timer invalidate];
+    _timer = nil;
+}
+
+- (IBAction)lapButtonClicked:(id)sender {
+    [_lapArray addObject:[NSNumber numberWithInt:_time]];
+    [self.laps reloadData];
+}
+
+- (IBAction)resetButtonClicked:(id)sender {
+    self.resetButton.hidden = YES;
+    self.lapButton.hidden = NO;
+    self.lapButton.enabled = NO;
+
+    _time = 0;
+
+    [_lapArray removeAllObjects];
+    [self.laps reloadData];
+
+    [self updateDisplay];
 }
 
 - (void)updateDisplay {
