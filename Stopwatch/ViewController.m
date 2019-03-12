@@ -24,6 +24,7 @@
 @implementation ViewController
 
 int _time;
+int _lastLapTime;
 NSTimer *_timer;
 NSMutableArray *_lapArray;
 
@@ -32,9 +33,6 @@ NSMutableArray *_lapArray;
     // Do any additional setup after loading the view, typically from a nib.
 
     _lapArray = [[NSMutableArray alloc] init];
-
-//    [self.startStop setFillColor:[[UIColor alloc] initWithRed:0.0980 green:0.2078 blue:0.1255 alpha:1.0] forState:UIControlStateNormal];
-//    [self.startStop setFillColor:[[UIColor alloc] initWithRed:0.0745 green:0.1294 blue:0.0784 alpha:1.0] forState:UIControlStateHighlighted];
 }
 
 - (IBAction)startButtonClicked:(id)sender {
@@ -60,7 +58,8 @@ NSMutableArray *_lapArray;
 }
 
 - (IBAction)lapButtonClicked:(id)sender {
-    [_lapArray addObject:[NSNumber numberWithInt:_time]];
+    [_lapArray addObject:[NSNumber numberWithInt:_time - _lastLapTime]];
+    _lastLapTime = _time;
     [self.laps reloadData];
 }
 
@@ -70,6 +69,7 @@ NSMutableArray *_lapArray;
     self.lapButton.enabled = NO;
 
     _time = 0;
+    _lastLapTime = 0;
 
     [_lapArray removeAllObjects];
     [self.laps reloadData];
@@ -86,14 +86,20 @@ NSMutableArray *_lapArray;
     int seconds = (time / 100) % 60;
     int minutes = (time / 6000) % 60;
     int hours = time / 360000;
-    return [NSString stringWithFormat: @"%02d:%02d:%02d.%02d", hours, minutes, seconds, hundredth];
+    if (hours > 0) {
+        return [NSString stringWithFormat: @"%02d:%02d:%02d.%02d", hours, minutes, seconds, hundredth];
+    } else {
+        return [NSString stringWithFormat: @"%02d:%02d.%02d", minutes, seconds, hundredth];
+    }
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"Lap %lu", indexPath.row + 1];
-    NSNumber *time = _lapArray[indexPath.row];
+    NSUInteger count = _lapArray.count;
+
+    cell.textLabel.text = [NSString stringWithFormat:@"Lap %lu", count - indexPath.row];
+    NSNumber *time = _lapArray[count - indexPath.row - 1];
     cell.detailTextLabel.text = [self formatTime:time.intValue];
 
     return cell;
