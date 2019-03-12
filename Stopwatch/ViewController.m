@@ -87,7 +87,7 @@ NSMutableArray *_lapArray;
     int minutes = (time / 6000) % 60;
     int hours = time / 360000;
     if (hours > 0) {
-        return [NSString stringWithFormat: @"%02d:%02d:%02d.%02d", hours, minutes, seconds, hundredth];
+        return [NSString stringWithFormat: @"%d:%02d:%02d.%02d", hours, minutes, seconds, hundredth];
     } else {
         return [NSString stringWithFormat: @"%02d:%02d.%02d", minutes, seconds, hundredth];
     }
